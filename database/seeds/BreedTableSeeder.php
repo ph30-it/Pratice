@@ -12,6 +12,7 @@ class BreedTableSeeder extends Seeder
      */
     public function run()
     {
+        // cách 1
         // for ($i=0 ; $i<5 ; $i++) {
         // 	$data = [
         // 		'name' => 'Breed'.$i
@@ -19,6 +20,7 @@ class BreedTableSeeder extends Seeder
         // 	Breed::create($data);
         // }
 
+        //cách 2 
         factory(App\Breed::class, 10)->create();
     }
 }

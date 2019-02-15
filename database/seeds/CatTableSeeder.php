@@ -12,13 +12,15 @@ class CatTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0 ; $i<10 ; $i++) {
-        	$data = [
-        		'name' => 'Cat'.$i,
-        		'breed_id' => rand(1,5),
-        		'dob' => now()
-        	];
-        	Cat::create($data);
-        }
+        // for ($i=0 ; $i<10 ; $i++) {
+        // 	$data = [
+        // 		'name' => 'Cat'.$i,
+        // 		'breed_id' => rand(1,5),
+        // 		'dob' => now()
+        // 	];
+        // 	Cat::create($data);
+        // }
+
+        factory(App\Cat::class, 10)->create();
     }
 }

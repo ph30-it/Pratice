@@ -7,14 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Cat extends Model
 {
     protected $fillable= [
-    	'name', 'breed_id', 'dob'
+    	'name', 'breed_id', 'age'
     ];
 
-
-    public function scopeBreedIdIsFive($query)
+    public function breed()
     {
-    	return $query->where('breed_id', 5)
-    				->where('name', 'abc')
-					->orderBy('name', 'desc');
+    	return $this->belongsTo('App\Breed');
     }
 }

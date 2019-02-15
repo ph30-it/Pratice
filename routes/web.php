@@ -14,16 +14,27 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+// list all breed
 Route::get('/breeds', 'BreedController@index')->name('list-breeds');
-Route::get('/breeds/create', 'BreedController@create')->name('create-breeds');
-Route::post('/breeds', 'BreedController@store')->name('breeds-store');
+// show form create cat
 Route::get('cats/create', 'CatController@create')->name('create-cats');
-Route::post('cats', 'CatController@store')->name('cats-store');
+// store cat
+Route::post('/cats', 'CatController@store')->name('cats-store');
 
-Route::get('/cats/{id}', 'CatController@show')->name('cats-show');
-Route::get('/breeds/{id}/list-cats', 'BreedController@listAllCatByBreedId');
-Route::get('/users', 'UserController@index');
-Route::get('/users/{id}/list-order-item', 'UserController@listOrderItem');
-Route::get('/users/set-role', 'UserController@setRoles');
-Route::resource('products', 'ProductController');
+//list cat
+Route::get('/cats', 'CatController@index')->name('list-cats');
+
+//show form edit cat
+Route::get('/cats/{id}/edit', 'CatController@edit')->name('edit-cat');
+// update cat
+Route::put('/cats/{id}', 'CatController@update')->name('update-cat');
+
+// delete cat
+Route::delete('/cats/{id}', 'CatController@destroy')->name('delete-cat');
+
+
+
+
+
+
+

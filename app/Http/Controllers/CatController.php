@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cat;
+use App\Breed;
 
 class CatController extends Controller
 {
@@ -14,7 +15,8 @@ class CatController extends Controller
      */
     public function index()
     {
-        $cats= Cat::all();
+        $cats= Cat::with('breed')->get();
+        // dd($cats);
         return view('cats.index', compact('cats'));
     }
 
@@ -25,7 +27,9 @@ class CatController extends Controller
      */
     public function create()
     {
-        return view('cats.create');
+        $breedIds= Breed::pluck('name', 'id');
+        // dd($breedIds);
+        return view('cats.create', compact('breedIds'));
     }
 
     /**
@@ -36,9 +40,11 @@ class CatController extends Controller
      */
     public function store(Request $request)
     {
+
         $data= $request->all();
+        // dd($data);
         Cat::create($data);
-        return redirect()->route('create-cats');
+        return redirect()->route('list-cats');
     }
 
     /**
@@ -61,7 +67,10 @@ class CatController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cat= Cat::with('breed')->find($id);
+        // dd($cat);
+        $breedIds= Breed::pluck('name', 'id');
+        return view('cats.edit', compact('cat', 'breedIds'));
     }
 
     /**
@@ -73,7 +82,11 @@ class CatController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request->all(), $id);
+        $cat = Cat::find($id);
+        $data= $request->all();
+        $cat->update($data);
+        return redirect()->route('list-cats');
     }
 
     /**
@@ -84,7 +97,13 @@ class CatController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // cach 1
+        $cat= Cat::find($id);
+        $cat->delete();
+
+        //cach 2 
+        // Cat::destroy($id);
+        return redirect()->route('list-cats');
     }
 
     /**

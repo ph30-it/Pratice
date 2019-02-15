@@ -15,50 +15,8 @@ class BreedController extends Controller
      */
     public function index()
     {
-        // $breeds= Breed::all();
-
-        // $data= [
-        //     [
-        //         'name' => 'Breed 50',
-        //         'created_at' => now(),
-        //         'updated_at' => now()
-        //     ],
-        //     [
-        //         'name' => 'Breed 51',
-        //         'created_at' => now(),
-        //         'updated_at' => now()
-        //     ]
-        // ];
-
-    
-        // $breed= Breed::find(10);
-        // $breed->delete();
-        // $breeds= Breed::find(1);
-
-        // $breeds->forceDelete();
-
-        // $cat= Cat::find(1);
-        // $cat->forceDelete();
-
-        \DB::enableQueryLog();
-        $cat = Cat::breedIdIsFive()->get();
-        dd(\DB::getQueryLog());
-        dd($cat);
-        exit;
-        // $breeds->restore();
-        // $breeds= Breed::onlyTrashed()->orderBy('id', 'desc')->first();
-        // dd($breeds->last());
-        // $breeds= $breeds->last();
-        $breeds->restore();
-        dd($breeds);
-
-        // \DB::enableQueryLog();
-        $breed= Breed::insert($data);
-        // dd(\DB::getQueryLog());
-
-        dd($breed);
-        // dd($breeds);
-        return view('breeds.index', compact('breeds', 'cats'));
+        $breeds= Breed::all(); // lấy all data bảng breeds
+        return view('breeds.index', compact('breeds'));
     }
 
     /**
@@ -134,15 +92,5 @@ class BreedController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function listAllCatByBreedId($id)
-    {
-        $cats= Cat::where('breed_id', $id)->get();
-        return view('cats.list-by-breed', compact('cats'));
-    }
+    
 }
