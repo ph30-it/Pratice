@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Breed;
-use App\Cat;
 
 class BreedController extends Controller
 {
@@ -15,8 +15,8 @@ class BreedController extends Controller
      */
     public function index()
     {
-        $breeds= Breed::all(); // lấy all data bảng breeds
-        return view('breeds.index', compact('breeds'));
+        $breeds= Breed::all();
+        return response()->json($breeds);
     }
 
     /**
@@ -26,11 +26,7 @@ class BreedController extends Controller
      */
     public function create()
     {
-        $cat = Cat::where('breed_id', 5)
-                    ->where('name', 'abc')
-                    ->orderBy('name', 'desc')
-                    ->get();
-        return view('breeds.create');
+        //
     }
 
     /**
@@ -41,10 +37,7 @@ class BreedController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        // dd($data);
-        Breed::create($data);
-        return redirect()->route('list-breeds');
+        //
     }
 
     /**
@@ -91,6 +84,4 @@ class BreedController extends Controller
     {
         //
     }
-
-    
 }

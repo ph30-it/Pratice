@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 
 class LoginController extends Controller
 {
@@ -35,5 +37,22 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function showFormLogin()
+    {
+        return view('users.login');
+    }
+
+    public function login(LoginRequest $request)
+    {
+        $data = $request->only('email', 'password');
+        // $data['role'] = 'admin';
+        // dd($data);
+        if (\Auth::attempt($data)) {
+            $request->session()->regenerate();
+            return redirect()->route('home');
+        }
+        return redirect()->back()->with(['message' => 'Account not correct']);
     }
 }

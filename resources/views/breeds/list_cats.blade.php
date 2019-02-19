@@ -1,20 +1,23 @@
 @extends('layouts.master')
-@section('content')      
+@section('content') 
+<h1>List cats of Breed : {{$breed->name}}</h1>     
     <div class="container">
     <table class="table table-striped">
         <thead>
       <tr>
         <td>ID</td>
         <td>Name</td>
+        <td>Age</td>
         <td>Created_at</td>
         <td>Updated_at</td>
       </tr>
     </thead>
     <tbody>
-    @foreach( $breeds as $item )
+    @foreach( $cats as $item )
       <tr>
         <td>{{ $item->id }}</td>
-        <td><a href="{{ route('list-cats-of-breed' , $item->id)}}"> {{ $item->name }}</a></td>
+        <td>{{ $item->name }}</td>
+        <td>{{ $item->age }}</td>
         <td>{{ $item->created_at }}</td>
         <td>{{ $item->updated_at }}</td>
       </tr>
