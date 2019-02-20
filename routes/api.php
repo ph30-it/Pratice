@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/breeds', 'API\BreedController@index');
+
+Route::get('cats/{id}/list-cats-same-breed', 'API\CatController@listCatSameBreed');

@@ -22,7 +22,9 @@
         <td>{{ $item->age }}</td>
         <td>{{ $item->created_at }}</td>
         <td>{{ $item->updated_at }}</td>
-        <td><a href="{{ route('edit-cat', $item->id)}} " class="btn btn-primary">Edit</a>  
+        <td>
+            <a href="{{ route('show-cat-detail', $item->id)}} " class="btn btn-primary">Show</a>
+            <a href="{{ route('edit-cat', $item->id)}} " class="btn btn-primary">Edit</a>  
             <form action="{{ route('delete-cat', $item->id)}}" method="POST">
                 @csrf
                 @method('DELETE')

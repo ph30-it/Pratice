@@ -18,11 +18,14 @@ Route::get('/', function () {
 
 //admin
 Route::group(['middleware' => ['auth', 'isAdmin'],
-			  'prefix' => 'admin',
+			  // 'prefix' => 'admin',
 			  'namespace' => 'User',
 			  // 'as' => 'admin.'
 
 			], function () {
+
+
+    Route::get('/cats/{id}', 'CatController@show')->name('show-cat-detail');
 
 	Route::get('/breeds', 'BreedController@index')->name('list-breeds');
 	// show form create cat

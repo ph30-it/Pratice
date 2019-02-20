@@ -22,4 +22,17 @@
      </tbody>
     </table>
 </div>
+<script type="text/javascript">
+  $(document).ready(function () {
+      $('tr').click(function (){
+        // alert('tr click');
+         $(this).find('td:nth-child(2)').text();
+        // console.log($(this).find('td:first-child').text());
+        // alert(id);
+
+      });
+
+  });
+</script>
 @endsection
+
