@@ -55,4 +55,10 @@ class LoginController extends Controller
         }
         return redirect()->back()->with(['message' => 'Account not correct']);
     }
+
+    public function logout(Request $request)
+    {
+        \Auth::logout();
+        return redirect()->route('/');
+    }
 }

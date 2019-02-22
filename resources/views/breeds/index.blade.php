@@ -1,6 +1,8 @@
 @extends('layouts.master')
 @section('content')      
     <div class="container">
+
+    
     <table class="table table-striped">
         <thead>
       <tr>

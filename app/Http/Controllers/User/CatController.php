@@ -57,6 +57,7 @@ class CatController extends Controller
     public function show($id)
     {
         $cat = Cat::find($id);
+        // dd($cat);
         return view('cats.show', compact('cat'));
     }
 

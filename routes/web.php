@@ -25,11 +25,11 @@ Route::group(['middleware' => ['auth', 'isAdmin'],
 			], function () {
 
 
+	Route::get('cats/create', 'CatController@create')->name('create-cats');// admin.create-cats
     Route::get('/cats/{id}', 'CatController@show')->name('show-cat-detail');
 
 	Route::get('/breeds', 'BreedController@index')->name('list-breeds');
 	// show form create cat
-	Route::get('cats/create', 'CatController@create')->name('create-cats');// admin.create-cats
 	// store cat
 	Route::post('/cats', 'CatController@store')->name('cats-store');
 
@@ -49,16 +49,19 @@ Route::group(['middleware' => ['auth', 'isAdmin'],
 });
 
 //use
-
+ // bcrypt($password)
 
 //Show form login 
 
-Route::get('/login', 'Auth\LoginController@showLoginForm')->name('form-login');
+// Route::get('/login', 'Auth\LoginController@showLoginForm')->name('form-login');
 
-Route::post('/login', 'Auth\LoginController@login')->name('login');
+// Route::post('/login', 'Auth\LoginController@login')->name('login');
 
-
+Route::get('users/create', 'UserController@create')->name('users.create');
+Route::post('users', 'UserController@store')->name('users.store');
 
 Auth::routes();
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login')->name('post-login');
 
 Route::get('/home', 'HomeController@index')->name('home');
