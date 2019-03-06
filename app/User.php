@@ -35,7 +35,7 @@ class User extends Authenticatable
                     ->where('email', $email);
     }
 
-    public function profiles()
+    public function abc()
     {
         return $this->hasMany('App\Profile');
     }
