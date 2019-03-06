@@ -49,6 +49,7 @@ class UserController extends Controller
     	dd($user);
     }
 
+
     public function editRoles()
     {
         // $roleuser= \App\RoleUser::all();
@@ -56,6 +57,9 @@ class UserController extends Controller
         $user= User::find(1);
         // $user->roles()->attach(1);
         $user->roles()->sync(2);
+        return view('users.create');
+
+        
         // dd('q',$user);
     }
 
