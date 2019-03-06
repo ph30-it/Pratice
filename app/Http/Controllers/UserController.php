@@ -49,13 +49,14 @@ class UserController extends Controller
     	dd($user);
     }
 
-    public function setRoles()
+    public function changeRoles()
     {
         // $roleuser= \App\RoleUser::all();
         // dd($roleuser);
         $user= User::find(1);
         // $user->roles()->attach(1);
         $user->roles()->sync(1);
+        return view('users.create');
         // dd('q',$user);
     }
 
